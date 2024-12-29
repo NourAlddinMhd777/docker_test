@@ -1,4 +1,3 @@
-from oneday_github_microservice import default_values
 from . import views
 from django.urls import path
 
