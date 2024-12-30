@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from myproject.handler import custom_404_view,custom_500_view,custom_502_view,custom_505_view
 
 urlpatterns = [
     path('test/',include('myapp.urls')),
 
 ]
+
+handler404 =custom_404_view
+handler500 =custom_500_view
+handler502 =custom_502_view
+handler505 =custom_505_view
