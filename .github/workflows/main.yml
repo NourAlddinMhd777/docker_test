@@ -19,7 +19,7 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          ssh $USERNAME@$SERVER_IP << EOF
+          ssh ubuntu@172.31.21.32 << EOF
             docker exec 96170f26ba68 bash -c "
             cd docker_test && \
             git pull origin main && \
