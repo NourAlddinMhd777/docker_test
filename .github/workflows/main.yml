@@ -15,14 +15,13 @@ jobs:
           
       - name: Pull changes and reload Gunicorn
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          
+          ssh $USERNAME@$SERVER_IP << 'EOF'
             docker exec 96170f26ba68 bash -c "
             cd docker_test && \
             git pull origin main && \
             kill -HUP \$(pgrep gunicorn)
             "
-   
+          EOF
