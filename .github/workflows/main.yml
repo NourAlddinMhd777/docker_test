@@ -35,12 +35,12 @@ jobs:
           docker pull nouralddinhabli/docker_test:latest
           
           # Run the commands inside the running container
-          sudo docker exec -u root dock_test_con bash -c "
+          sudo docker exec -u root 5bec4c6b7721 bash -c "
             cd docker_test && \
             git pull origin main && \
             pip install -r requirements.txt && \
             # Run Gunicorn to start the application
-            gunicorn --workers 3 --bind 0.0.0.0:8010 myproject.wsgi:application
+            touch myproject/wsgi.py
           "
           
 
