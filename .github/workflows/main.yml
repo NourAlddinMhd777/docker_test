@@ -35,7 +35,7 @@ jobs:
           docker pull nouralddinhabli/docker_test:latest
           
           # Run the commands inside the running container
-          docker exec -u root $CONTAINER_NAME bash -c "
+          sudo docker exec -u root dock_test_con bash -c "
             cd docker_test && \
             git pull origin main && \
             pip install -r requirements.txt && \
