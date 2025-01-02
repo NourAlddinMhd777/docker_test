@@ -19,10 +19,10 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          ssh ubuntu@51.21.3.40 << EOF
+          
             docker exec 96170f26ba68 bash -c "
             cd docker_test && \
             git pull origin main && \
             kill -HUP \$(pgrep gunicorn)
             "
-          EOF
+   
