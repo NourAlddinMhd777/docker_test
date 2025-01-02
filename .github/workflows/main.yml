@@ -11,20 +11,13 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Run SSH commands to pull changes
+        uses: actions/checkout@v2        
+          
+      - name: Pull changes and reload Gunicorn
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
-          
-      - name: Pull changes and reload Gunicorn
         run: |
           ssh $USERNAME@$SERVER_IP << EOF
             docker exec 96170f26ba68 bash -c "
