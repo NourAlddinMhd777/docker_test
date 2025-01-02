@@ -23,6 +23,13 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
-          ssh $USERNAME@$SERVER_IP 'cd /path/your/repo && git pull origin Branch_name && Some
-          commands that you usually type after the pull command '
-
+          
+      - name: Pull changes and reload Gunicorn
+        run: |
+          ssh $USERNAME@$SERVER_IP << EOF
+            docker exec <container_name> bash -c "
+            cd /path/to/your/repo && \
+            git pull origin main && \
+            kill -HUP \$(pgrep gunicorn)
+            "
+          EOF
