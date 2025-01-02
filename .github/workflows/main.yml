@@ -29,15 +29,17 @@ jobs:
         
       - name: Run commands inside Docker container
         env:
-          CONTAINER_NAME: dock_test_con
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          USERNAME: ${{ secrets.USERNAME }}
         run: |
-          # Run the commands inside the running container
-          sudo docker exec -u root 5bec4c6b7721 bash -c "
-            cd docker_test && \
-            git pull origin main && \
-            pip install -r requirements.txt && \
-            # Run Gunicorn to start the application
-            touch myproject/wsgi.py
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+     
+      - name: Run commands inside Docker container via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER_IP "
+            docker exec -u root dock_test_con bash -c 'cd docker_test && git pull origin main && pip install -r requirements.txt && gunicorn --workers 3 --bind 0.0.0.0:8010 myproject.wsgi:application'
           "
-          
-
