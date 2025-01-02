@@ -32,7 +32,7 @@ jobs:
           CONTAINER_NAME: friendly_kilby
         run: |
           # Pull the latest image (if applicable) and run the container
-          docker pull your_image:latest
+          docker nouralddinhabli/docker_test:latest
           
           # Run the commands inside the running container
           docker exec -u root $CONTAINER_NAME bash -c "
