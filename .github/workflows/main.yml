@@ -31,9 +31,6 @@ jobs:
         env:
           CONTAINER_NAME: dock_test_con
         run: |
-          # Pull the latest image (if applicable) and run the container
-          docker pull nouralddinhabli/docker_test:latest
-          
           # Run the commands inside the running container
           sudo docker exec -u root 5bec4c6b7721 bash -c "
             cd docker_test && \
