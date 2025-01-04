@@ -26,6 +26,6 @@ jobs:
      
       - name: Run commands inside Docker container via SSH
         run: |
-          ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER_IP "
+          ssh -o StrictHostKeyChecking=no ubuntu@51.21.3.40 "
             docker exec -u root dock_test_con bash -c 'cd docker_test && git pull origin main && pip install -r requirements.txt && gunicorn --workers 3 --bind 0.0.0.0:8010 myproject.wsgi:application'
           "
