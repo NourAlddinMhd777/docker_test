@@ -27,4 +27,4 @@ jobs:
       - name: Run Docker Script
         run: |
           chmod +x docker_test_script.sh
-          ./docker_test_script.sh
+          sudo ./docker_test_script.sh
