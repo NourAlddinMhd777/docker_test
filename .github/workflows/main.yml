@@ -26,5 +26,5 @@ jobs:
 
       - name: Run Docker Script
         run: |
-          chmod +x docker_script.sh
-          .docker_script.sh
+          chmod +x docker_tset_script.sh
+          .docker_tset_script.sh
