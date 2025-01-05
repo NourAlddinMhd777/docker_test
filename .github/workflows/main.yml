@@ -23,4 +23,4 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
-          ssh $USERNAME@$SERVER_IP 'chmod +x docker_test_script.sh && ./docker_test_script.sh'
+          chmod +x docker_test_script.sh && ./docker_test_script.sh
