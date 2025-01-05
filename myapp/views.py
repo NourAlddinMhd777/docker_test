@@ -5,5 +5,5 @@ from rest_framework.views import status
 @api_view(["GET"])
 def fun_view(request):
 
-    return Response("hello world!",status=200)
+    return Response("hello world2!",status=200)
 
