@@ -11,9 +11,9 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v2
         
-      - name: Set up SSH for server access
+      - name: Run SSH commands to pull changes
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
@@ -23,4 +23,4 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
-          ssh $USERNAME@$SERVER_IP 'chmod +x docker_test_script.sh && sudo ./docker_test_script.sh'
+          ssh $USERNAME@$SERVER_IP 'chmod +x docker_test_script.sh && ./docker_test_script.sh'
